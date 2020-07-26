@@ -1,0 +1,453 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package book;
+
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+
+/**
+ *
+ * @author Machenike
+ */
+public class SearchFrame extends javax.swing.JFrame {
+    public static Connection conn;
+    public static String url="jdbc:derby://localhost:1527/hotelDB";
+    public String username = null;
+    public String password = null;
+    public Statement statement = null;
+    NewJFrame formerFrame;
+    public ResultSet rs;
+    String s1=null,s2=null,s3=null,s4=null;
+    Image image;
+    Image hotelImage;
+    
+    public void connectionHotelDB() throws SQLException{
+        conn = DriverManager.getConnection(url, username, password);
+    }
+
+    /**
+     * Creates new form SearchFrame
+     */
+    public SearchFrame(String text) throws SQLException {
+        initComponents();
+        this.connectionHotelDB();
+        String[] introduce =new String[]{};
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        //set background;
+        ImageIcon backgroundIcon = new ImageIcon("111.jpg");
+        int width=Toolkit.getDefaultToolkit().getScreenSize().width;
+        int height=Toolkit.getDefaultToolkit().getScreenSize().height;
+        image = backgroundIcon.getImage().getScaledInstance(width, height, 1);
+        backgroundIcon = new ImageIcon(image);
+        background.setIcon(backgroundIcon);
+        
+        //set hotel picture;
+        ImageIcon htlPic1 = new ImageIcon("hotel5.jpg");
+        int htl1_width= hotel1.getWidth();
+        int htl1_height = hotel1.getHeight();
+        hotelImage = htlPic1.getImage().getScaledInstance(htl1_width, htl1_height, 1);
+        htlPic1 = new ImageIcon(hotelImage);
+        hotel1.setIcon(htlPic1);
+        
+        ImageIcon htlPic2 = new ImageIcon("hotel6.jpg");
+        int htl2_width= hotel2.getWidth();
+        int htl2_height = hotel2.getHeight();
+        hotelImage = htlPic2.getImage().getScaledInstance(htl2_width, htl2_height, 1);
+        htlPic2 = new ImageIcon(hotelImage);
+        hotel2.setIcon(htlPic2);
+        
+        ImageIcon htlPic3 = new ImageIcon("hotel7.jpg");
+        int htl3_width= hotel3.getWidth();
+        int htl3_height = hotel3.getHeight();
+        hotelImage = htlPic3.getImage().getScaledInstance(htl3_width, htl3_height, 1);
+        htlPic3 = new ImageIcon(hotelImage);
+        hotel3.setIcon(htlPic3);
+        
+        ImageIcon htlPic4 = new ImageIcon("hotel8.jpg");
+        int htl4_width= hotel4.getWidth();
+        int htl4_height = hotel4.getHeight();
+        hotelImage = htlPic4.getImage().getScaledInstance(htl4_width, htl4_height, 1);
+        htlPic4 = new ImageIcon(hotelImage);
+        hotel4.setIcon(htlPic4);
+        
+        ImageIcon htlPic5 = new ImageIcon("hotel9.jpg");
+        int htl5_width= hotel5.getWidth();
+        int htl5_height = hotel5.getHeight();
+        hotelImage = htlPic5.getImage().getScaledInstance(htl5_width, htl5_height, 1);
+        htlPic5 = new ImageIcon(hotelImage);
+        hotel5.setIcon(htlPic5);
+        
+        String str = "select * from HOTELINFO where CAST(PLACE AS VARCHAR(128)) ='"+text+"'";
+        statement = conn.createStatement();
+        rs = statement.executeQuery(str);
+        while(rs.next()){
+            String name = rs.getString("HOTELNAME");
+            String intro = rs.getString(7);
+            String price = rs.getString("ROOMPRICE");
+            if(jLabel1.getText()==""){
+                jLabel1.setText(name);
+                jLabel2.setText("Hotel infomation:"+intro);
+                jLabel3.setText(price);
+            }else if(jLabel4.getText()==""){
+                jLabel4.setText(name);
+                jLabel5.setText("Hotel infomation:"+intro);
+                jLabel6.setText(price);
+            }else if(jLabel7.getText()==""){
+                jLabel7.setText(name);
+                jLabel8.setText("Hotel infomation:"+intro);
+                jLabel9.setText(price);
+            }else if(jLabel10.getText()==""){
+                jLabel10.setText(name);
+                jLabel11.setText("Hotel infomation:"+intro);
+                jLabel12.setText(price);
+            }else{
+                jLabel13.setText(name);
+                jLabel14.setText("Hotel infomation:"+intro);
+                jLabel15.setText(price);
+            }
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel6 = new javax.swing.JPanel();
+        backpanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        hotel1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        hotel2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        hotel3 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        hotel4 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        hotel5 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel6.setOpaque(false);
+        jPanel6.setPreferredSize(new java.awt.Dimension(828, 1000));
+
+        backpanel.setOpaque(false);
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        hotel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        hotel1.setText("HOTEL1");
+        hotel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hotel1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(hotel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 13, 123, 141));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 11, 518, 34));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 52, 518, 63));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 128, 518, 39));
+
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        hotel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        hotel2.setText("HOTEL2");
+        hotel2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hotel2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(hotel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 0, 123, 145));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 0, 518, 36));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 43, 518, 54));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 104, 518, 39));
+
+        jPanel3.setOpaque(false);
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        hotel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        hotel3.setText("HOTEL3");
+        hotel3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hotel3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(hotel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 13, 123, 150));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 13, 518, 45));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 71, 518, 61));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 139, 518, 37));
+
+        jPanel4.setOpaque(false);
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        hotel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        hotel4.setText("HOTEL4");
+        hotel4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hotel4ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(hotel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 0, 123, 150));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 0, 518, 47));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 54, 518, 45));
+
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 106, 518, 44));
+
+        jPanel5.setOpaque(false);
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        hotel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        hotel5.setText("HOTEL5");
+        hotel5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hotel5ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(hotel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 13, 123, 137));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 0, 518, 41));
+
+        jLabel14.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 48, 518, 49));
+
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 104, 518, 44));
+
+        javax.swing.GroupLayout backpanelLayout = new javax.swing.GroupLayout(backpanel);
+        backpanel.setLayout(backpanelLayout);
+        backpanelLayout.setHorizontalGroup(
+            backpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backpanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(backpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        backpanelLayout.setVerticalGroup(
+            backpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backpanelLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(backpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(backpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1285, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 832, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1444, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1444, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void hotel5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotel5ActionPerformed
+        try {
+            s1 = jLabel13.getText();
+            statement = conn.createStatement();
+            rs = statement.executeQuery("select * FROM HOTELINFO WHERE HOTELNAME='"+s1+"'");
+            while(rs.next()){
+                s2 = rs.getString("ROOMLEFT");
+                s3 = rs.getString("ROOMPRICE");
+                s4 = rs.getString("SCORE");
+                new InformFrame(s1,s2,s3,s4).setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_hotel5ActionPerformed
+
+    private void hotel4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotel4ActionPerformed
+        try {
+            s1 = jLabel10.getText();
+            statement = conn.createStatement();
+            rs = statement.executeQuery("select * FROM HOTELINFO WHERE HOTELNAME='"+s1+"'");
+            while(rs.next()){
+                s2 = rs.getString("ROOMLEFT");
+                s3 = rs.getString("ROOMPRICE");
+                s4 = rs.getString("SCORE");
+                new InformFrame(s1,s2,s3,s4).setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_hotel4ActionPerformed
+
+    private void hotel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotel3ActionPerformed
+        try {
+            s1 = jLabel7.getText();
+            statement = conn.createStatement();
+            rs = statement.executeQuery("select * FROM HOTELINFO WHERE HOTELNAME='"+s1+"'");
+            while(rs.next()){
+                s2 = rs.getString("ROOMLEFT");
+                s3 = rs.getString("ROOMPRICE");
+                s4 = rs.getString("SCORE");
+                new InformFrame(s1,s2,s3,s4).setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_hotel3ActionPerformed
+
+    private void hotel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotel2ActionPerformed
+        try {
+            s1 = jLabel4.getText();
+            statement = conn.createStatement();
+            rs = statement.executeQuery("select * FROM HOTELINFO WHERE HOTELNAME='"+s1+"'");
+            while(rs.next()){
+                s2 = rs.getString("ROOMLEFT");
+                s3 = rs.getString("ROOMPRICE");
+                s4 = rs.getString("SCORE");
+                new InformFrame(s1,s2,s3,s4).setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_hotel2ActionPerformed
+
+    private void hotel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotel1ActionPerformed
+        try {
+            s1 = jLabel1.getText();
+            statement = conn.createStatement();
+            rs = statement.executeQuery("select * FROM HOTELINFO WHERE HOTELNAME='"+s1+"'");
+            while(rs.next()){
+                s2 = rs.getString("ROOMLEFT");
+                s3 = rs.getString("ROOMPRICE");
+                s4 = rs.getString("SCORE");
+                new InformFrame(s1,s2,s3,s4).setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_hotel1ActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
+    private javax.swing.JPanel backpanel;
+    private javax.swing.JButton hotel1;
+    private javax.swing.JButton hotel2;
+    private javax.swing.JButton hotel3;
+    private javax.swing.JButton hotel4;
+    private javax.swing.JButton hotel5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    // End of variables declaration//GEN-END:variables
+}
